@@ -1,0 +1,32 @@
+<h2> Дерево </h2>
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+  <!-- Узел без потомков -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <li class="mat-tree-node">
+      <button mat-icon-button disabled></button>
+      <a (click)="clickedNode(node)">
+        {{node.name}}
+      </a>
+    </li>
+  </mat-tree-node>
+  <!-- Узел с потомками -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <li>
+      <div class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button> 
+        <a (click)="clickedNode(node)">
+          {{node.name}}
+        </a>
+      </div>
+      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </ul>
+    </li>
+  </mat-nested-tree-node>
+</mat-tree>

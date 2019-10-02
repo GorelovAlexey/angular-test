@@ -1,0 +1,16 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+
+<div class="mat-app-background basic-container container">
+  <mat-card class="left">
+    <app-tree  [data] = "treeData.data" (selectedNode)="setActiveNode($event)">
+      loading
+    </app-tree>
+  </mat-card>
+  <mat-card class="right">
+    <app-details [node] = "activeNode"  >
+      loading
+    </app-details>
+  </mat-card>
+
+  
+</div>

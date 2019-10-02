@@ -1,0 +1,32 @@
+<!-- Узел выбран -->
+<div *ngIf="node">
+  <h2>Подробности об узле {{ "'" + node.name + "'"}}:</h2>
+  <ul>
+    <li *ngFor="let d of split(node)">
+      {{d.name}} : {{d.value}}
+    </li>
+  </ul> 
+  <hr/>
+  <h3> Добавить новое поле: </h3>
+  <!-- Форма для добавления полей обьекту -->
+  <form [formGroup]="addFieldForm" (ngSubmit) = "submit(addFieldForm.value)">
+    <div class = "field">
+      <label for="field">
+        Поле
+      </label>
+      <input id="field" type="text" formControlName="field">
+    </div>
+    <div class = "field">
+      <label for="value">
+        Значение
+      </label>
+      <input id="value" type="text" formControlName="value">
+    </div>
+    <button class="button" type="submit">Добавить</button> 
+  </form>  
+</div>
+
+<!-- Узел не выбран -->
+<div *ngIf="!node">
+  <h2>Выберите узел</h2>
+</div>    
